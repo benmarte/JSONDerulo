@@ -18,11 +18,12 @@ $feeds = explode(',', $modx->getOption('users', $scriptProperties, '3'));
 $apiKey = $modx->getOption('apiKey', $scriptProperties, '');
 $userName = $modx->getOption('userName', $scriptProperties, '');
 $cacheTime = $modx->getOption('cacheTime', $scriptProperties, 43200);
+$cacheName = $modx->getOption('cacheName', $scriptProperties, 'flickr');
 
 $rawFeedData = array();
 
 foreach ($feeds as $userId) {
-	$cacheId = 'flickrfeed-'.$userId;
+	$cacheId = 'flickrfeed-'.$userId.'-'.$cacheName;
 
 	if (($json = $modx->cacheManager->get($cacheId)) === null) {
 		if ($ch === null) {
